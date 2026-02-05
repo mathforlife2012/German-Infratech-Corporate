@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GIC | German Infratech Corporate</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --gic-turquoise: #2dd4bf;
+        --gic-turquoise-glow: rgba(45, 212, 191, 0.4);
+        --gic-black: #020617;
+        --gic-surface: #0a0f25;
+      }
+      body {
+        font-family: 'Inter', sans-serif;
+        background-color: var(--gic-black);
+        color: #ffffff;
+        overflow-x: hidden;
+        position: relative;
+        min-height: 100vh;
+      }
+      
+      /* Deep Background Layer */
+      .bg-ambient {
+        position: fixed;
+        inset: 0;
+        z-index: -2;
+        background-color: var(--gic-black);
+        background-image: 
+          radial-gradient(circle at 20% 30%, rgba(45, 212, 191, 0.05) 0%, transparent 50%),
+          radial-gradient(circle at 80% 70%, rgba(30, 64, 175, 0.05) 0%, transparent 50%),
+          radial-gradient(circle at 50% 50%, rgba(15, 23, 42, 1) 0%, transparent 100%);
+      }
+
+      /* Subtle Streaks Overlay */
+      .bg-streaks {
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
+        overflow: hidden;
+      }
+
+      .bg-streaks::before {
+        content: "";
+        position: absolute;
+        inset: -100%;
+        background-image: 
+          repeating-linear-gradient(
+            115deg,
+            transparent,
+            transparent 150px,
+            rgba(45, 212, 191, 0.015) 151px,
+            transparent 152px,
+            transparent 300px,
+            rgba(255, 255, 255, 0.01) 301px,
+            transparent 302px
+          );
+        animation: streak-move 60s linear infinite;
+      }
+
+      @keyframes streak-move {
+        from { transform: translateY(0); }
+        to { transform: translateY(20%); }
+      }
+
+      .mono {
+        font-family: 'JetBrains Mono', monospace;
+      }
+      ::-webkit-scrollbar {
+        width: 3px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--gic-black);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #1e293b;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--gic-turquoise);
+      }
+      
+      .liquid-glass {
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+        backdrop-filter: blur(40px) saturate(200%);
+        -webkit-backdrop-filter: blur(40px) saturate(200%);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        box-shadow: 
+          0 12px 40px 0 rgba(0, 0, 0, 0.5),
+          inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+        border-radius: 2.5rem;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      
+      .liquid-glass::after {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle at center, rgba(45, 212, 191, 0.05) 0%, transparent 60%);
+        pointer-events: none;
+        animation: liquid-flow 15s infinite ease-in-out alternate;
+      }
+
+      @keyframes liquid-flow {
+        0% { transform: translate(-10%, -10%) rotate(0deg); }
+        100% { transform: translate(10%, 10%) rotate(15deg); }
+      }
+
+      .liquid-glass:hover {
+        border-color: rgba(45, 212, 191, 0.4);
+        box-shadow: 
+          0 20px 60px 0 rgba(0, 0, 0, 0.6),
+          inset 0 0 20px rgba(45, 212, 191, 0.15);
+        transform: translateY(-4px) scale(1.01);
+      }
+
+      .glass-card {
+        background: rgba(8, 12, 28, 0.6);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(45, 212, 191, 0.1);
+      }
+
+      .turquoise-glow {
+        box-shadow: 0 0 40px rgba(45, 212, 191, 0.2);
+      }
+
+      .scanline {
+        width: 100%;
+        height: 100px;
+        z-index: 99;
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(45, 212, 191, 0.02) 50%, rgba(0, 0, 0, 0) 100%);
+        opacity: 0.1;
+        position: fixed;
+        bottom: 100%;
+        left: 0;
+        pointer-events: none;
+        animation: scanline 10s linear infinite;
+      }
+      @keyframes scanline {
+        0% { bottom: 100%; }
+        100% { bottom: -100px; }
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.4",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "@google/genai": "https://esm.sh/@google/genai@^1.40.0",
+    "lucide-react": "https://esm.sh/lucide-react@^0.563.0",
+    "recharts": "https://esm.sh/recharts@^3.7.0"
+  }
+}
+</script>
+</head>
+  <body>
+    <div class="bg-ambient"></div>
+    <div class="bg-streaks"></div>
+    <div class="scanline"></div>
+    <div id="root"></div>
+  </body>
+</html>
